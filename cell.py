@@ -7,23 +7,31 @@ class Cell:
         self.row = row
         self.col = col
         self.screen = screen
+        self.sketched_value = 0
         # initialise variables
 
     def set_cell_value(self, value):
-        self.value = value
-        # sets the value of the cell
-        set_sketched_value(value)
-        # uses current value as argument for sketch method
+        self.value = self.sketched_value
+        return self.value
+        # method that sets the value of the cell
+        # should be called when user hits enter
+        # returns the value of the cell (although this is may not be needed)
 
-    def set_sketched_value(self, value,):
-        if value != 0:
-            self.sketched_value = value
-        # the cell draws value if value is not 0
-        else: 
-            self.sketched_value = None
-        # the cell should be empty if value is 0
-        # uses None as a placeholder for empty cell
+    def set_sketched_value(self, value):
+        try:
+            if value >= 1 and value <= 9:
+                self.sketched_value = value
+                return self.sketched_value
+            else: 
+                raise ValueError
+        except ValueError:
+            self.sketched_value = 0
         
+        # method that sets the sketched value of the cell
+        # should be called when user hits a number
+        # sets the sketched value to 0 if the user input is invalid in any way
+        # 0 is placeholder for no sketched value
+    
 
     def draw(self):
         pass
