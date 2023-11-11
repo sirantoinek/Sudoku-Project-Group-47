@@ -3,7 +3,6 @@ from cell import Cell
 """This class is a WIP. It will be finished by Milestone 3"""
 
 
-# FIXME: decide whether we're using column/row numbers or indexes. Change __init__ and select accordingly
 # FIXME: clear & reset_to_original functions need copy of the original board. We need to figure out where to store it
 class Board:
     def __init__(self, width, height, screen, difficulty):
@@ -14,7 +13,7 @@ class Board:
         for x in range(width):
             column = []
             for y in range(height):
-                column.append(Cell(0, x + 1, y + 1, screen))
+                column.append(Cell(0, x, y, screen))
             self.cells.append(column)
 
         # save the dimensions for future reference
@@ -26,8 +25,6 @@ class Board:
     def select(self, row, col):
         """Select a cell at the given row and column"""
         '''the actual indexes are 1 less than the row and column numbers'''
-        row -= 1
-        col -= 1
         try:
             self.selected_cell = self.cells[col][row]
         except IndexError:
