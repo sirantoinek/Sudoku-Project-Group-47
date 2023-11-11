@@ -10,8 +10,8 @@ class Cell:
         self.sketched_value = 0
         # initialise variables
 
-    def set_cell_value(self, value):
-        self.value = self.sketched_value
+    def set_cell_value(self, value): # pass this function sketched value
+        self.value = value
         return self.value
         # method that sets the value of the cell
         # should be called when user hits enter
@@ -21,11 +21,12 @@ class Cell:
         try:
             if value >= 1 and value <= 9:
                 self.sketched_value = value
-                return self.sketched_value
             else: 
                 raise ValueError
         except ValueError:
             self.sketched_value = 0
+        finally:
+            return self.sketched_value
         
         # method that sets the sketched value of the cell
         # should be called when user hits a number
