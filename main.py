@@ -23,6 +23,11 @@ def main():
                 quit()
             if display_main_menu:
                 main_menu.displayMainMenu(screen, WIDTH, HEIGHT)
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    difficulty = main_menu.getDifficulty(event.pos)
+                    if difficulty != None:
+                        display_main_menu = False
+                        display_game = True
                 # this should call on a function that displays the main menu
                 # the function should return a game difficulty and should update display_game to True
                 # feel free to change this logic if it doesn't work right

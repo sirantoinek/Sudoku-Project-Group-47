@@ -8,7 +8,23 @@ def displayMainMenu(screen, width, height):
     displaySubTitle(screen, width, height)
     displayDifficulty(screen, width, height)
 
+def getDifficulty(mouse_pos):
+    if mouse_pos[0] >= 200 and mouse_pos[0] <= 300 and mouse_pos[1] >= 525 and mouse_pos[1] <= 575:
+        return "Easy"
+    elif mouse_pos[0] >= 375 and mouse_pos[0] <= 525 and mouse_pos[1] >= 525 and mouse_pos[1] <= 575:
+        return "Medium"
+    elif mouse_pos[0] >= 600 and mouse_pos[0] <= 700 and mouse_pos[1] >= 525 and mouse_pos[1] <= 575:
+        return "Hard"
+    else:
+        return None
     
+
+'''
+----------------------------------------------------------------
+The following functions are helper functions for displayMainMenu
+----------------------------------------------------------------
+'''
+
 def displayTitle(screen, width, height):
     title_screen_font = pygame.font.Font(None, 100)
     title_surface = title_screen_font.render("Welcome to Sudoku", 0, FONT_COLOR)
@@ -43,3 +59,5 @@ def displayDifficulty(screen, width, height):
     hard_game_modes_surface = game_modes_font.render(game_modes[2], 0, SECONDARY_FONT_COLOR,)
     hard_game_modes_rect = hard_game_modes_surface.get_rect(center=(width / 2 + 200, height / 2 + 100))
     screen.blit(hard_game_modes_surface, hard_game_modes_rect)
+
+
