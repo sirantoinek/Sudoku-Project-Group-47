@@ -3,10 +3,11 @@ from constants import *
 
 def displayMainMenu(screen, width, height):
     screen.fill(BACKGROUND_COLOR)
-
+# fills screen with background color
     displayTitle(screen, width, height)
     displaySubTitle(screen, width, height)
     displayDifficulty(screen, width, height)
+# calls all functions to display screen elements
 
 def getDifficulty(mouse_pos):
     if mouse_pos[0] >= 200 and mouse_pos[0] <= 300 and mouse_pos[1] >= 525 and mouse_pos[1] <= 575:
@@ -17,7 +18,7 @@ def getDifficulty(mouse_pos):
         return "Hard"
     else:
         return None
-    
+# receives mouse click coordinates and determines what difficulty was selected
 
 '''
 ----------------------------------------------------------------
@@ -30,12 +31,14 @@ def displayTitle(screen, width, height):
     title_surface = title_screen_font.render("Welcome to Sudoku", 0, FONT_COLOR)
     title_rect = title_surface.get_rect(center=(width / 2, 200))
     screen.blit(title_surface, title_rect)
+# displays title of game
 
 def displaySubTitle(screen, width, height):
     game_mode_font = pygame.font.Font(None, 75)
     game_mode_surface = game_mode_font.render("Choose a game mode!", 0, FONT_COLOR,)
     game_mode_rect = game_mode_surface.get_rect(center=(width / 2, 425))
     screen.blit(game_mode_surface, game_mode_rect)
+# displays subtitle of game
 
 def displayDifficulty(screen, width, height):
     game_modes = ["Easy", "Medium", "Hard"]
@@ -60,4 +63,6 @@ def displayDifficulty(screen, width, height):
     hard_game_modes_rect = hard_game_modes_surface.get_rect(center=(width / 2 + 200, height / 2 + 100))
     screen.blit(hard_game_modes_surface, hard_game_modes_rect)
 
-
+# uses three chunks of code to display the three difficulty options
+# each chunk of code contains a rectangle and text
+# the rectangle is used to create an outline for the text

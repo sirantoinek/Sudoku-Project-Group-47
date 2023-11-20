@@ -23,17 +23,24 @@ def main():
                 quit()
             if display_main_menu:
                 main_menu.displayMainMenu(screen, WIDTH, HEIGHT)
+                # calls on a function that displays the main menu
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     difficulty = main_menu.getDifficulty(event.pos)
+                    # calls on a function that determines what difficulty was selected
                     if difficulty != None:
                         display_main_menu = False
                         display_game = True
-                # this should call on a function that displays the main menu
-                # the function should return a game difficulty and should update display_game to True
-                # feel free to change this logic if it doesn't work right
+                        # if a difficulty was selected, the main menu is no longer displayed and the game is displayed
             if display_game:
                 pass
                 # this should call on a function that displays the game
+                # potentially handles all game logic
+            if display_end:
+                pass
+                # this should call on a function that displays the end screen
+                # would be helpful to implement as a module
+                # pass it game status to correctly print if the player won or lost
+                # will also include a button to take user back to the main menu
         pygame.display.update()
 
 
