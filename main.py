@@ -32,16 +32,21 @@ def main():
                         display_game = True
                         # if a difficulty was selected, the main menu is no longer displayed and the game is displayed
             if display_game:
-                pass
+                screen.fill((255, 255, 255))
+
                 # this should call on a function that displays the game
                 # potentially handles all game logic
+            '''
             if display_end:
                 pass
+            '''
+
                 # this should call on a function that displays the end screen
                 # would be helpful to implement as a module
                 # pass it game status to correctly print if the player won or lost
                 # will also include a button to take user back to the main menu
         pygame.display.update()
+
 
 
 if __name__ == "__main__":

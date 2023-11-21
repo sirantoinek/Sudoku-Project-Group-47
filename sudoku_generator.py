@@ -1,4 +1,5 @@
-import math,random
+import math
+import random
 
 """
 This was adapted from a GeeksforGeeks article "Program for Sudoku Generator" by Aarti_Rathi and Ankur Trisal
@@ -254,3 +255,15 @@ def generate_sudoku(size, removed):
     sudoku.remove_cells()
     board = sudoku.get_board()
     return board
+'''
+x = generate_sudoku(9, 30)
+y = 0
+for i in range(9):
+    print(x[i])
+    y += 1
+    if i == 8:
+        break
+    if y == 3:
+        print("-----------------------")
+        y = 0
+'''

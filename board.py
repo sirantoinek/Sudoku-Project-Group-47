@@ -1,4 +1,5 @@
 from cell import Cell
+import sudoku_generator
 
 """This class is a WIP. It will be finished by Milestone 3"""
 
@@ -7,13 +8,13 @@ from cell import Cell
 class Board:
     def __init__(self, width, height, screen, difficulty):
         """Create the board with given dimensions, window, and difficulty setting"""
-
+        board = sudoku_generator.generate_sudoku(9, 30)
         # create the board
         self.cells = []
         for x in range(width):
             column = []
             for y in range(height):
-                column.append(Cell(0, x, y, screen))
+                column.append(board[x][y])
             self.cells.append(column)
 
         # save the dimensions for future reference
@@ -21,7 +22,7 @@ class Board:
         self.height = height
 
         self.selected_cell = None  # the cell the player has currently selected
-
+        # After this function is run, self.cells stores an incomplete sudoku board.
     def select(self, row, col):
         """Select a cell at the given row and column"""
         '''the actual indexes are 1 less than the row and column numbers'''
@@ -53,7 +54,7 @@ class Board:
         # FIXME: placeholder behavior
         for y in range(self.height):
             for x in range(self.width):
-                print(self.cells[x][y].value, end=' ')
+                print(self.cells[x][y], end=' ')
             print()
 
     def click(self, x, y):
@@ -80,7 +81,9 @@ class Board:
         """Check if the board has been solved"""
         raise NotImplementedError  # FIXME: Nick will implement this function
 
-
+    def give_cells(self):
+        return self.cells
+        # I don't know how to access self.cells from outside of this file without using this method.
 '''Everything below this point is testing code that will only run if board.py is launched directly'''
 if __name__ == "__main__":
     choices = [
