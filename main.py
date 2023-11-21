@@ -33,7 +33,16 @@ def main():
                         # if a difficulty was selected, the main menu is no longer displayed and the game is displayed
             if display_game:
                 screen.fill((255, 255, 255))
-
+            '''
+        for i in range(1,10):
+            if i % 3 == 0:
+                pygame.draw.line(screen, GRID_COLOR, (i * CELL_SIZE + 25, 0), (i * CELL_SIZE + 25, 900), 10)
+                pygame.draw.line(screen, GRID_COLOR, (0, i * CELL_SIZE + 25), (900, i * CELL_SIZE + 25), 10)
+                continue
+            pygame.draw.line(screen,GRID_COLOR,(i * CELL_SIZE + 25, 0), (i * CELL_SIZE + 25, 900), 3)
+            pygame.draw.line(screen, GRID_COLOR, (0, i * CELL_SIZE + 25), (900, i * CELL_SIZE + 25), 3)
+        # This code can be used to draw lines for the board. Note that there is some negative space.
+            '''
                 # this should call on a function that displays the game
                 # potentially handles all game logic
             '''
