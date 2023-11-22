@@ -8,7 +8,7 @@ class Cell:
         self.col = col
         self.screen = screen
         self.sketched_value = 0
-        self.cell_font = pygame.font.Font(None, VALUE_FONT_SIZE)
+        # self.cell_font = pygame.font.Font(None, VALUE_FONT_SIZE)
         # initialise variables
 
     def set_cell_value(self, value): # pass this function sketched value
@@ -52,3 +52,7 @@ class Cell:
 
         # method draws cell on the screen
         # this is where pygame is needed
+
+    def draw(self):
+        self.draw_sketched_value()
+        self.draw_final_value()
