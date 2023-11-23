@@ -15,6 +15,7 @@ def main():
     display_main_menu = True
     display_game = False
     display_win = False
+    display_end = False
 
     while True:
         for event in pygame.event.get():
