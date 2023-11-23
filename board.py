@@ -136,9 +136,9 @@ class Board:
                 self.cells[x][y].draw()
         pygame.display.update()
 
-    def click(self, x, y):
+    def click(self, x, y):  # FIXME: this seems to be buggy towards the bottom-right corner of the screen
         if x < LEFT_MARGIN or x > self.screen.get_width() - RIGHT_MARGIN or y < TOP_MARGIN or y > self.screen.get_height() - BOTTOM_MARGIN:
-            return None
+            return None  # FIXME: this may need to be a tuple after all
         else:
             return (y - TOP_MARGIN) // CELL_SIZE, (x - LEFT_MARGIN) // CELL_SIZE
 
