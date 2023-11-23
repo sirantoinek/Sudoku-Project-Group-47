@@ -138,7 +138,7 @@ class Board:
 
     def click(self, x, y):  # FIXME: this seems to be buggy towards the bottom-right corner of the screen
         if x < LEFT_MARGIN or x > self.screen.get_width() - RIGHT_MARGIN or y < TOP_MARGIN or y > self.screen.get_height() - BOTTOM_MARGIN:
-            return None  # FIXME: this may need to be a tuple after all
+            return None, None  # FIXME: this may need to be a tuple after all
         else:
             return (y - TOP_MARGIN) // CELL_SIZE, (x - LEFT_MARGIN) // CELL_SIZE
 
@@ -197,9 +197,13 @@ if __name__ == "__main__":
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:  # mouse click
                 row, col = test_board.click(event.pos[0], event.pos[1])
+                # this decision structure below avoids crashing when the user clicks outside the board
+                if row is None or col is None:
+                    pass
+                else:
+                    test_board.select(row, col)
+                    test_board.draw()
                 print(f'Clicked ({row}, {col})')
-                test_board.select(row, col)
-                test_board.draw()
 
         '''for (index, option) in enumerate(choices):
             print(f"{index + 1}. " + option)
