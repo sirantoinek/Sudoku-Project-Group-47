@@ -38,7 +38,6 @@ class Board:
         self.screen = screen
 
         self.selected_cell = None  # the cell the player has currently selected
-        self.select(0, 0)
 
     def select(self, row, col):
         """Select a cell at the given row and column"""
