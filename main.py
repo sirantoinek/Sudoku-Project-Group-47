@@ -32,28 +32,24 @@ def main():
                         display_game = True
                         # if a difficulty was selected, the main menu is no longer displayed and the game is displayed
             if display_game:
-                screen.fill((255, 255, 255))
-            '''
-        for i in range(1,10):
-            if i % 3 == 0:
-                pygame.draw.line(screen, GRID_COLOR, (i * CELL_SIZE + 25, 0), (i * CELL_SIZE + 25, 900), 10)
-                pygame.draw.line(screen, GRID_COLOR, (0, i * CELL_SIZE + 25), (900, i * CELL_SIZE + 25), 10)
-                continue
-            pygame.draw.line(screen,GRID_COLOR,(i * CELL_SIZE + 25, 0), (i * CELL_SIZE + 25, 900), 3)
-            pygame.draw.line(screen, GRID_COLOR, (0, i * CELL_SIZE + 25), (900, i * CELL_SIZE + 25), 3)
-        # This code can be used to draw lines for the board. Note that there is some negative space.
-            '''
+                pass
                 # this should call on a function that displays the game
                 # potentially handles all game logic
-            '''
+
+                '''
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    row, col = board.click(event.pos[0], event.pos[1])
+                    board.select(row, col)
+                    # this is the code that will be used to select a cell
+                '''
+    
             if display_end:
                 pass
-            '''
-
                 # this should call on a function that displays the end screen
                 # would be helpful to implement as a module
                 # pass it game status to correctly print if the player won or lost
                 # will also include a button to take user back to the main menu
+
         pygame.display.update()
 
 

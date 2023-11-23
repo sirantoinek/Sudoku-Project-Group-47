@@ -141,8 +141,10 @@ class Board:
         pygame.display.update()
 
     def click(self, x, y):
-        """Handle mouse clicks at a point on the board"""
-        raise NotImplementedError("GUI not implemented")
+        if x < LEFT_MARGIN or x > self.screen.get_width() - RIGHT_MARGIN or y < TOP_MARGIN or y > self.screen.get_height() - BOTTOM_MARGIN:
+            return None, None
+        else:
+            return (y - TOP_MARGIN) // CELL_SIZE, (x - LEFT_MARGIN) // CELL_SIZE
 
     def is_full(self):
         """Check if the board has any empty cells left"""
@@ -197,6 +199,9 @@ if __name__ == "__main__":
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:  # mouse click
+                row, col = test_board.click(event.pos[0], event.pos[1])
+                print(f'Clicked ({row}, {col})')
 
         '''for (index, option) in enumerate(choices):
             print(f"{index + 1}. " + option)
