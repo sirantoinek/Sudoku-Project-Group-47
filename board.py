@@ -195,6 +195,7 @@ if __name__ == "__main__":
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+
             if event.type == pygame.MOUSEBUTTONDOWN:  # mouse click
                 row, col = test_board.click(event.pos[0], event.pos[1])
                 # this decision structure below avoids crashing when the user clicks outside the board
@@ -203,7 +204,37 @@ if __name__ == "__main__":
                 else:
                     test_board.select(row, col)
                     test_board.draw()
-                print(f'Clicked ({row}, {col})')
+
+            elif event.type == pygame.KEYDOWN:
+                if pygame.key.name(event.key).isnumeric():  # if user pressed a number, sketch the value
+                    value_to_sketch = int(pygame.key.name(event.key))  # get int value for the pressed number
+                    test_board.sketch(value_to_sketch)
+                    test_board.draw()  # update display
+
+                elif event.key == pygame.K_RETURN:  # if user pressed Enter, set the cell value
+                    test_board.place_number(test_board.selected_cell.sketched_value)  # set the cell's value to its sketched value...
+                    test_board.sketch(0)  # ...and remove the sketched value
+                    test_board.draw()  # update display
+                else:
+                    '''
+                    Finally, we'll check if the player tried to move the selection using the arrow keys.
+                    We start by using a dict to associate each arrow key to an offset.
+                    '''
+                    directions = {
+                        pygame.K_UP: (0, 1),
+                        pygame.K_LEFT: (-1, 0),
+                        pygame.K_DOWN: (0, -1),
+                        pygame.K_RIGHT: (1, 0)
+                    }
+                    offset = directions.get(event.key)
+
+                    if offset is not None:
+                        x_offset, y_offset = offset
+                        col = test_board.selected_cell.col + x_offset
+                        row = test_board.selected_cell.row - y_offset  # y values are reversed in pygame, so we subtract
+                        if 0 <= col < test_board.width and 0 <= row < test_board.height:  # only allow valid selections
+                            test_board.select(row, col)
+                            test_board.draw()  # update display
 
         '''for (index, option) in enumerate(choices):
             print(f"{index + 1}. " + option)
