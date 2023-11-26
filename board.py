@@ -139,13 +139,59 @@ class Board:
         for x in range(self.width):
             for y in range(self.height):
                 self.cells[x][y].draw()
+
+        self.quick_menu()
+        # calls on a function that displays the quick menu at the bottom of the screen
+
         pygame.display.update()
 
-    def click(self, x, y):  # FIXME: this seems to be buggy towards the bottom-right corner of the screen
-        if x < LEFT_MARGIN or x > self.screen.get_width() - RIGHT_MARGIN or y < TOP_MARGIN or y > self.screen.get_height() - BOTTOM_MARGIN:
-            return None, None  # FIXME: this may need to be a tuple after all
+    def quick_menu(self):
+        menu_options = ["Reset", "Restart", "Exit"]
+        menu_options_font = pygame.font.Font(None, 50)
+
+        pygame.draw.rect(self.screen, SECONDARY_COLOR, (190, 825, 110, 50))
+        # this rectangle creates a fill with the secondary color
+        pygame.draw.rect(self.screen, DEFAULT_FONT_COLOR, (190, 825, 110, 50), 3)
+        # this rectangle creates an outline with a width of 3 pixels
+        reset_menu_options_surface = menu_options_font.render(menu_options[0], 0, BUTTON_FONT_COLOR)
+        reset_menu_options_rect = reset_menu_options_surface.get_rect(center=(WIDTH / 2 - 207, HEIGHT - 50))
+        self.screen.blit(reset_menu_options_surface, reset_menu_options_rect)
+        # the font is rendered and placed on the screen above the rectangles to create a button
+        
+        pygame.draw.rect(self.screen, SECONDARY_COLOR, (375, 825, 150, 50))
+        # this rectangle creates a fill with the secondary color
+        pygame.draw.rect(self.screen, DEFAULT_FONT_COLOR, (375, 825, 150, 50), 3)
+        # this rectangle creates an outline with a width of 3 pixels
+        restart_menu_options_surface = menu_options_font.render(menu_options[1], 0, BUTTON_FONT_COLOR)
+        restart_menu_options_rect = restart_menu_options_surface.get_rect(center=(WIDTH / 2, HEIGHT - 50))
+        self.screen.blit(restart_menu_options_surface, restart_menu_options_rect)
+        # the font is rendered and placed on the screen above the rectangles to create a button
+
+        pygame.draw.rect(self.screen, SECONDARY_COLOR, (600, 825, 100, 50))
+        # this rectangle creates a fill with the secondary color
+        pygame.draw.rect(self.screen, DEFAULT_FONT_COLOR, (600, 825, 100, 50), 3)
+        # this rectangle creates an outline with a width of 3 pixels
+        exit_menu_options_surface = menu_options_font.render(menu_options[2], 0, BUTTON_FONT_COLOR)
+        exit_menu_options_rect = exit_menu_options_surface.get_rect(center=(WIDTH / 2 + 200, HEIGHT - 50))
+        self.screen.blit(exit_menu_options_surface, exit_menu_options_rect)
+        # the font is rendered and placed on the screen above the rectangles to create a button
+
+
+    def click(self, x, y): 
+        if x > 200 and x < 300 and y > 825 and y < 875:
+            return "BUTTON_FUNCTION", "RESET"
+        elif x > 375 and x < 525 and y > 825 and y < 875:
+            return "BUTTON_FUNCTION", "RESTART"
+        elif x > 600 and x < 700 and y > 825 and y < 875:
+            return "BUTTON_FUNCTION", "EXIT"
+        # uses ranges to determine if a user clicked on a button
+        # uses special 'key' phrases to determine which button was clicked
+        elif x < LEFT_MARGIN or x > self.screen.get_width() - RIGHT_MARGIN or y < TOP_MARGIN or y > self.screen.get_height() - BOTTOM_MARGIN:
+            return None, None 
+        # returns None if nothing of significance was clicked
         else:
             return int((y - TOP_MARGIN) // CELL_SIZE), int((x - LEFT_MARGIN) // CELL_SIZE)
+        # returns the row and column of the clicked cell
 
     def is_full(self):
         """Check if the board has any empty cells left"""
