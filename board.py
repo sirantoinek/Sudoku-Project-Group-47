@@ -219,7 +219,10 @@ class Board:
             for col in range(self.width):
                 temp_set.append((self.cells[row][col]).get_cell_value())
                 # Appending cell values from the row to a temporary list to be checked.
-            if sorted(temp_set) != valid_set:
+            temp_set.sort()
+            if temp_set[0] == 0:  # If board is incomplete, return 0.
+                return 0
+            elif temp_set != valid_set:
                 return False  # If the sorted row is not equal to the given valid list, the solution is incorrect.
 
         for col in range(self.width):  # Checking all columns
@@ -227,13 +230,19 @@ class Board:
             for row in range(self.height):
                 temp_set.append((self.cells[row][col]).get_cell_value())
                 # Appending cell values from the column to a temporary list to be checked.
-            if sorted(temp_set) != valid_set:
+            temp_set.sort()
+            if temp_set[0] == 0:  # If board is incomplete, return 0.
+                return 0
+            elif temp_set != valid_set:
                 return False  # If the sorted column is not equal to the given valid list, the solution is incorrect.
 
         for row in range(0, self.height, 3):  # Checking all boxes
             for col in range(0, self.width, 3):
                 temp_set = self.get_box_as_list(row, col)
-                if sorted(temp_set) != valid_set:
+                temp_set.sort()
+                if temp_set[0] == 0:  # If board is incomplete, return 0.
+                    return 0
+                elif temp_set != valid_set:
                     return False  # If the sorted box is not equal to the given valid list, the solution is incorrect.
 
         return True  # If all above tests are passed, the user has entered the correct solution.
