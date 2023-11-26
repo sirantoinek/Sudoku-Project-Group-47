@@ -11,11 +11,11 @@ def displayMainMenu(screen, width, height):
 
 def getDifficulty(mouse_pos):
     if mouse_pos[0] >= 200 and mouse_pos[0] <= 300 and mouse_pos[1] >= 525 and mouse_pos[1] <= 575:
-        return "Easy"
+        return DIFFICULTY_EASY
     elif mouse_pos[0] >= 375 and mouse_pos[0] <= 525 and mouse_pos[1] >= 525 and mouse_pos[1] <= 575:
-        return "Medium"
+        return DIFFICULTY_MEDIUM
     elif mouse_pos[0] >= 600 and mouse_pos[0] <= 700 and mouse_pos[1] >= 525 and mouse_pos[1] <= 575:
-        return "Hard"
+        return DIFFICULTY_HARD
     else:
         return None
 # receives mouse click coordinates and determines what difficulty was selected

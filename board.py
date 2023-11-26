@@ -39,6 +39,7 @@ class Board:
         """Select a cell at the given row and column"""
         try:
             self.selected_cell = self.cells[col][row]
+            self.draw()  # update the display
         except IndexError:
             print(f'There is no cell at ({col}, {row}). There are {self.width} columns and {self.height} rows.')
 
@@ -56,10 +57,12 @@ class Board:
     def sketch(self, value):
         """Sets sketched value of selected cell"""
         self.selected_cell.set_sketched_value(value)
+        self.draw()  # update the display
 
     def place_number(self, value):
         """Sets value of selected cell"""
         self.selected_cell.set_cell_value(value)
+        self.draw()  # update the display
 
     def clear(self):
         """Clear the selected cell by setting both its value and sketched value back to 0"""
@@ -68,6 +71,8 @@ class Board:
 
         self.selected_cell.set_cell_value(0)
         self.selected_cell.set_sketched_value(0)
+
+        self.draw()  # update the display
 
     def draw(self):
         """Draw the board"""
@@ -158,6 +163,8 @@ class Board:
                 current_cell.set_cell_value(self.original_cells[x][y])
                 current_cell.set_sketched_value(0)
 
+        self.draw()  # update the display
+
     def check_board(self):
         """Check if the board has been solved"""
         valid_set = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -196,95 +203,3 @@ class Board:
     def give_cells(self):
         return self.original_cells
         # I don't know how to access self.cells from outside of this file without using this method.
-
-
-'''Everything below this point is testing code that will only run if board.py is launched directly'''
-if __name__ == "__main__":
-    pygame.init()
-    screen = pygame.display.set_mode((WIDTH, HEIGHT))
-    pygame.display.set_caption('Sudoku')
-
-    choices = [
-        'Select',  # 1
-        # 'Find empty',
-        'Sketch',  # 2
-        'Place number',  # 3
-        'clear',  # 4
-        'draw',  # 5
-        # 'click',
-        'Is full',  # 6
-        # 'Update board',
-        # 'Reset to original',
-        # 'Check board'
-    ]
-
-    test_board = Board(9, 9, screen, DIFFICULTY_HARD)
-    test_board.draw()
-
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
-            if event.type == pygame.MOUSEBUTTONDOWN:  # mouse click
-                row, col = test_board.click(event.pos[0], event.pos[1])
-                # this decision structure below avoids crashing when the user clicks outside the board
-                if row is None or col is None:
-                    pass
-                else:
-                    test_board.select(row, col)
-                    test_board.draw()
-
-            elif event.type == pygame.KEYDOWN:
-                if pygame.key.name(event.key).isnumeric():  # if user pressed a number, sketch the value
-                    value_to_sketch = int(pygame.key.name(event.key))  # get int value for the pressed number
-                    test_board.sketch(value_to_sketch)
-                    test_board.draw()  # update display
-
-                elif event.key == pygame.K_RETURN:  # if user pressed Enter, set the cell value
-                    test_board.place_number(test_board.selected_cell.sketched_value)  # set the cell's value to its sketched value...
-                    test_board.sketch(0)  # ...and remove the sketched value
-                    test_board.draw()  # update display
-                    #print(test_board.check_board())  # simple test code for check_board and get_box_as_list.
-                else:
-                    '''
-                    Finally, we'll check if the player tried to move the selection using the arrow keys.
-                    We start by using a dict to associate each arrow key to an offset.
-                    '''
-                    directions = {
-                        pygame.K_UP: (0, 1),
-                        pygame.K_LEFT: (-1, 0),
-                        pygame.K_DOWN: (0, -1),
-                        pygame.K_RIGHT: (1, 0)
-                    }
-                    offset = directions.get(event.key)
-
-                    if offset is not None:
-                        x_offset, y_offset = offset
-                        col = test_board.selected_cell.col + x_offset
-                        row = test_board.selected_cell.row - y_offset  # y values are reversed in pygame, so we subtract
-                        if 0 <= col < test_board.width and 0 <= row < test_board.height:  # only allow valid selections
-                            test_board.select(row, col)
-                            test_board.draw()  # update display
-
-        '''for (index, option) in enumerate(choices):
-            print(f"{index + 1}. " + option)
-
-        choice = int(input())
-        if choice == 1:
-            row = int(input("Row:"))
-            col = int(input("Col:"))
-            test_board.select(row, col)
-        elif choice == 2:
-            test_board.sketch(int(input("Value:")))
-        elif choice == 3:
-            test_board.place_number(int(input("Value:")))
-        elif choice == 4:
-            test_board.clear()
-        elif choice == 5:
-            test_board.draw()
-        elif choice == 6:
-            print(test_board.is_full())
-        test_board.draw()'''
-
