@@ -100,22 +100,30 @@ def main():
                             if 0 <= col < game_board.width and 0 <= row < game_board.height:  # only allow valid selections
                                 game_board.select(row, col)
 
-                if game_board.check_board():
-                    display_game = False
-                    display_end = True
+            game_status = game_board.check_board()
+                # saves game status to be used when printing end screen.
+            if game_status == 0:
+                print("Game is not complete yet")
+            # if the board is not complete, the game continues to be displayed
+            else:
+                print("Game is complete")
+                display_game = False
+                display_end = True
                     # if the board is complete, the game is no longer displayed and the end screen is displayed
-                    # keeps checking the board to see if it is complete
+                    # game_status variable can be used to determine if win or loss screen should be displayed
 
-                pygame.display.update()
-
-            if display_end:
-                pass
-                    # this should call on a function that displays the end screen
-                    # would be helpful to implement as a module
-                    # pass it game status to correctly print if the player won or lost
-                    # will also include a button to take user back to the main menu
+            pygame.display.update()
 
 
+
+        '''--------- End Screen ---------'''
+        while display_end:
+            screen.fill(BACKGROUND_COLOR)
+            pygame.display.update()
+            # this should call on a function that displays the end screen
+            # would be helpful to implement as a module
+            # pass it game status to correctly print if the player won or lost
+            # will also include a button to take user back to the main menu
 
 
 if __name__ == "__main__":
