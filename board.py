@@ -246,7 +246,7 @@ class Board:
                 elif temp_set != valid_set:
                     victory = 2  # If the sorted box is not equal to the given valid list, the solution is incorrect.
 
-        return victory  # If all above tests are passed, the user has entered the correct solution.
+        return victory  # 1 is returned if the board was solved correctly, 2 is returned if incorrect.
 
     def get_box_as_list(self, row_start, col_start):
         """Returns the box starting at the given row and column as a one dimensional list."""
