@@ -29,7 +29,7 @@ def main():
                     quit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     difficulty = main_menu.getDifficulty(event.pos)
-                    print(difficulty)
+                    # DEBUG: print(difficulty)
                     # calls on a function that determines what difficulty was selected
             if difficulty != None:
                 display_main_menu = False
@@ -60,8 +60,7 @@ def main():
                             game_board.draw()
                             # restarts the game with a new board but same difficulty
                         if col == "RESET":
-                            game_board.clear()
-                            game_board.draw()
+                            game_board.reset_to_original()
                             # clears the board
                             # FIXME the clear function doesn't clear the board
                         if col == "EXIT":
