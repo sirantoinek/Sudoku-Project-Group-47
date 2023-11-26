@@ -79,7 +79,7 @@ def main():
                         game_board.place_number(
                             game_board.selected_cell.sketched_value)  # set the cell's value to its sketched value...
                         game_board.sketch(0)  # ...and remove the sketched value
-                        # print(game_board.check_board())  # simple test code for check_board and get_box_as_list.
+                        print(game_board.check_board())  # simple test code for check_board and get_box_as_list.
                     elif game_board.selected_cell is not None:  # avoid error if player has not selected a cell yet
                         '''
                         Finally, we'll check if the player tried to move the selection using the arrow keys.
@@ -100,7 +100,7 @@ def main():
                             if 0 <= col < game_board.width and 0 <= row < game_board.height:  # only allow valid selections
                                 game_board.select(row, col)
 
-            game_status = game_board.check_board()
+            '''game_status = game_board.check_board()
                 # saves game status to be used when printing end screen.
             if game_status == 0:
                 print("Game is not complete yet")
@@ -112,7 +112,7 @@ def main():
                     # if the board is complete, the game is no longer displayed and the end screen is displayed
                     # game_status variable can be used to determine if win or loss screen should be displayed
 
-            pygame.display.update()
+            pygame.display.update()'''
 
 
 

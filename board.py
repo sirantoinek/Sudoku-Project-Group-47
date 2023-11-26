@@ -214,6 +214,7 @@ class Board:
     def check_board(self):
         """Check if the board has been solved"""
         valid_set = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        victory = True
         for row in range(self.height):  # Checking all rows
             temp_set = []
             for col in range(self.width):
@@ -223,7 +224,7 @@ class Board:
             if temp_set[0] == 0:  # If board is incomplete, return 0.
                 return 0
             elif temp_set != valid_set:
-                return False  # If the sorted row is not equal to the given valid list, the solution is incorrect.
+                victory = False  # If the sorted row is not equal to the given valid list, the solution is incorrect.
 
         for col in range(self.width):  # Checking all columns
             temp_set = []
@@ -234,7 +235,7 @@ class Board:
             if temp_set[0] == 0:  # If board is incomplete, return 0.
                 return 0
             elif temp_set != valid_set:
-                return False  # If the sorted column is not equal to the given valid list, the solution is incorrect.
+                victory = False  # If the sorted column is not equal to the given valid list, the solution is incorrect.
 
         for row in range(0, self.height, 3):  # Checking all boxes
             for col in range(0, self.width, 3):
@@ -243,9 +244,9 @@ class Board:
                 if temp_set[0] == 0:  # If board is incomplete, return 0.
                     return 0
                 elif temp_set != valid_set:
-                    return False  # If the sorted box is not equal to the given valid list, the solution is incorrect.
+                    victory = False  # If the sorted box is not equal to the given valid list, the solution is incorrect.
 
-        return True  # If all above tests are passed, the user has entered the correct solution.
+        return victory  # If all above tests are passed, the user has entered the correct solution.
 
     def get_box_as_list(self, row_start, col_start):
         """Returns the box starting at the given row and column as a one dimensional list."""
