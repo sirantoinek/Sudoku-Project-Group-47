@@ -160,7 +160,38 @@ class Board:
 
     def check_board(self):
         """Check if the board has been solved"""
-        raise NotImplementedError  # FIXME: Nick will implement this function
+        valid_set = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        for row in range(self.height):  # Checking all rows
+            temp_set = []
+            for col in range(self.width):
+                temp_set.append((self.cells[row][col]).get_cell_value())
+                # Appending cell values from the row to a temporary list to be checked.
+            if sorted(temp_set) != valid_set:
+                return False  # If the sorted row is not equal to the given valid list, the solution is incorrect.
+
+        for col in range(self.width):  # Checking all columns
+            temp_set = []
+            for row in range(self.height):
+                temp_set.append((self.cells[row][col]).get_cell_value())
+                # Appending cell values from the column to a temporary list to be checked.
+            if sorted(temp_set) != valid_set:
+                return False  # If the sorted column is not equal to the given valid list, the solution is incorrect.
+
+        for row in range(0, self.height, 3):  # Checking all boxes
+            for col in range(0, self.width, 3):
+                temp_set = self.get_box_as_list(row, col)
+                if sorted(temp_set) != valid_set:
+                    return False  # If the sorted box is not equal to the given valid list, the solution is incorrect.
+
+        return True  # If all above tests are passed, the user has entered the correct solution.
+
+    def get_box_as_list(self, row_start, col_start):
+        """Returns the box starting at the given row and column as a one dimensional list."""
+        box_as_list = []
+        for row in range(row_start, row_start + 3):
+            for col in range(col_start, col_start + 3):
+                box_as_list.append((self.cells[row][col]).get_cell_value())
+        return box_as_list
 
     def give_cells(self):
         return self.original_cells
@@ -215,6 +246,7 @@ if __name__ == "__main__":
                     test_board.place_number(test_board.selected_cell.sketched_value)  # set the cell's value to its sketched value...
                     test_board.sketch(0)  # ...and remove the sketched value
                     test_board.draw()  # update display
+                    #print(test_board.check_board())  # simple test code for check_board and get_box_as_list.
                 else:
                     '''
                     Finally, we'll check if the player tried to move the selection using the arrow keys.
