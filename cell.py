@@ -16,7 +16,7 @@ class Cell:
 
     def set_cell_value(self, value):  # pass this function sketched value
         self.value = value
-        #return self.value
+        # return self.value
         # method that sets the value of the cell
         # should be called when user hits enter
         # returns the value of the cell (although this is may not be needed)

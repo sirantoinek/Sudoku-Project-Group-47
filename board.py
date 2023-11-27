@@ -76,8 +76,6 @@ class Board:
 
     def draw(self):
         """Draw the board"""
-        self.screen.fill(BACKGROUND_COLOR)  # draw the background
-
         '''Draw the grid'''
         '''Create variables specifying the area covered by this board'''
         start_x, end_x = LEFT_MARGIN, self.screen.get_width() - RIGHT_MARGIN

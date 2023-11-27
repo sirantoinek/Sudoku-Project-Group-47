@@ -1,9 +1,8 @@
 import pygame
 from constants import *
+import glob
 
 def displayMainMenu(screen, width, height):
-    screen.fill(BACKGROUND_COLOR)
-# fills screen with background color
     displayTitle(screen, width, height)
     displaySubTitle(screen, width, height)
     displayDifficulty(screen, width, height)
