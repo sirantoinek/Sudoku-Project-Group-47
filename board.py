@@ -12,7 +12,7 @@ from constants import *
 
 
 class Board:
-    def __init__(self, width, height, screen, difficulty):
+    def __init__(self, width, height, screen, difficulty=0):
         """Create the board with given dimensions, window, and difficulty setting"""
 
         '''Creates the 2d lists that will store cell info

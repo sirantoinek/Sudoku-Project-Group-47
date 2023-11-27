@@ -1,4 +1,5 @@
 import pygame
+import sys
 import main_menu
 from sudoku_generator import SudokuGenerator
 from board import Board
@@ -136,12 +137,20 @@ def main():
         while display_end:
             # handling happens here (mouse clicks)
             v = Victory(screen)
-            v.win()
-            pygame.display.update()
-            z = input("")
-            pygame.quit()
-            break
+            print(victory)
+            if victory:
+                v.win()
+            else:
+                v.loss()
+
+            while True:
+                for event in pygame.event.get():
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_RETURN:
+                            sys.exit()
+                pygame.display.update()
         break
+
 
 
 
