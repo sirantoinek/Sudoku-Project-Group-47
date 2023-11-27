@@ -24,6 +24,7 @@ class Cell:
     def get_cell_value(self):  # getter for value
         return self.value
 
+
     def set_sketched_value(self, value):
         try:
             if value >= 1 and value <= 9:
