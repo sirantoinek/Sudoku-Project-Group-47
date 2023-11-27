@@ -75,11 +75,22 @@ def main():
                         value_to_sketch = int(pygame.key.name(event.key))  # get int value for the pressed number
                         game_board.sketch(value_to_sketch)
 
-                    elif event.key == pygame.K_RETURN:  # if user pressed Enter, set the cell value
+                    elif event.key == pygame.K_RETURN and game_board.selected_cell != None:  # if user pressed Enter, set the cell value
                         game_board.place_number(
                             game_board.selected_cell.sketched_value)  # set the cell's value to its sketched value...
                         game_board.sketch(0)  # ...and remove the sketched value
-                        print(game_board.check_board())  # simple test code for check_board and get_box_as_list.
+                        game_status = game_board.check_board()
+                        # checks game status to see if the board is complete or won
+                        if game_status == 0:
+                            pass
+                            # if the board is not complete, the game continues to be displayed
+                        elif game_status == 1 or game_status == 2:
+                            display_game = False
+                            display_end = True
+                            victory = True if game_status == 1 else False
+                            # if the board is complete, the game is no longer displayed and the end screen is displayed
+                            # game_status variable can be used to determine if win or loss screen should be displayed
+
                     elif game_board.selected_cell is not None:  # avoid error if player has not selected a cell yet
                         '''
                         Finally, we'll check if the player tried to move the selection using the arrow keys.
@@ -100,30 +111,19 @@ def main():
                             if 0 <= col < game_board.width and 0 <= row < game_board.height:  # only allow valid selections
                                 game_board.select(row, col)
 
-            '''game_status = game_board.check_board()
-                # saves game status to be used when printing end screen.
-            if game_status == 0:
-                print("Game is not complete yet")
-            # if the board is not complete, the game continues to be displayed
-            else:
-                print("Game is complete")
-                display_game = False
-                display_end = True
-                    # if the board is complete, the game is no longer displayed and the end screen is displayed
-                    # game_status variable can be used to determine if win or loss screen should be displayed
 
-            pygame.display.update()'''
-
-
+            pygame.display.update()
 
         '''--------- End Screen ---------'''
+        screen.fill(BACKGROUND_COLOR)
+        # here should call on a function that displays the end screen
+        # would be helpful to implement as a module
+        # pass it game status to correctly print if the player won or lost
+        # will also include a button to take user back to the main menu
         while display_end:
-            screen.fill(BACKGROUND_COLOR)
+            # handling happens here (mouse clicks)
             pygame.display.update()
-            # this should call on a function that displays the end screen
-            # would be helpful to implement as a module
-            # pass it game status to correctly print if the player won or lost
-            # will also include a button to take user back to the main menu
+            pass
 
 
 if __name__ == "__main__":
