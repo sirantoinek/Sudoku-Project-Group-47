@@ -87,6 +87,11 @@ class Board:
         lines_y = [(i / 9) * range_y + start_y for i in range(0, 10)]
         wide_lines_x, wide_lines_y = lines_x[::3], lines_y[::3]  # these coordinates will have wider lines
 
+        # Draw the background
+        w = pygame.image.load("Bamboo.jpg")
+        self.screen.blit(w, (-100, 0))
+        self.screen.blit(w, (-100, 200))
+
         # draw horizontal lines
         for y in lines_y:
             pygame.draw.line(
