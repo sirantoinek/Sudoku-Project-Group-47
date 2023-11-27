@@ -89,8 +89,10 @@ def main():
                     if pygame.key.name(event.key).isnumeric():  # if user pressed a number, sketch the value
                         value_to_sketch = int(pygame.key.name(event.key))  # get int value for the pressed number
                         game_board.sketch(value_to_sketch)
-
-                    elif event.key == pygame.K_RETURN and game_board.selected_cell != None:  # if user pressed Enter, set the cell value
+                    elif pygame.key.name(event.key)[1].isnumeric():
+                        value_to_sketch = int(pygame.key.name(event.key)[1])  # get int value for the pressed number
+                        game_board.sketch(value_to_sketch)
+                    elif (event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER) and game_board.selected_cell != None:  # if user pressed Enter, set the cell value
                         game_board.place_number(
                             game_board.selected_cell.sketched_value)  # set the cell's value to its sketched value...
                         game_board.sketch(0)  # ...and remove the sketched value
