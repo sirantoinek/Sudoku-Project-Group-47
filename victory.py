@@ -12,7 +12,8 @@ class Victory:
         title_surface = title_screen_font.render("Victory!!!", 0, DEFAULT_FONT_COLOR)
         title_rect = title_surface.get_rect(center=(900 / 2, 200))
         self.secret.blit(title_surface, title_rect)
-        title_surface = title_screen_font.render("Press enter to quit.", 0, DEFAULT_FONT_COLOR)
+        title_screen_font = pygame.font.Font(None, 60)
+        title_surface = title_screen_font.render("Press enter to return to menu.", 0, DEFAULT_FONT_COLOR)
         title_rect = title_surface.get_rect(center=(900 / 2, 500))
         self.secret.blit(title_surface, title_rect)
     def loss(self):
@@ -20,6 +21,7 @@ class Victory:
         title_surface = title_screen_font.render("You Lose.", 0, DEFAULT_FONT_COLOR)
         title_rect = title_surface.get_rect(center=(900 / 2, 200))
         self.secret.blit(title_surface, title_rect)
-        title_surface = title_screen_font.render("Press enter to quit.", 0, DEFAULT_FONT_COLOR)
+        title_screen_font = pygame.font.Font(None, 60)
+        title_surface = title_screen_font.render("Press enter to return to menu.", 0, DEFAULT_FONT_COLOR)
         title_rect = title_surface.get_rect(center=(900 / 2, 500))
         self.secret.blit(title_surface, title_rect)

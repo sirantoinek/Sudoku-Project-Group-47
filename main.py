@@ -137,7 +137,6 @@ def main():
         while display_end:
             # handling happens here (mouse clicks)
             v = Victory(screen)
-            print(victory)
             if victory:
                 v.win()
             else:
@@ -147,9 +146,14 @@ def main():
                 for event in pygame.event.get():
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_RETURN:
-                            sys.exit()
-                pygame.display.update()
-        break
+                            game_board = None
+                            display_main_menu = True
+                            display_game = False
+                            display_end = False
+                            break
+                break
+            pygame.display.update()
+
 
 
 
