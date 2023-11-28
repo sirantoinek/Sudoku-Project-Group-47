@@ -184,18 +184,18 @@ class Board:
         """Identifies which game element was clicked on"""
 
         if 200 < x < 300 and 825 < y < 875:
-            return "BUTTON_FUNCTION", "RESET"
+            return RESET
         elif 375 < x < 525 and 825 < y < 875:
-            return "BUTTON_FUNCTION", "RESTART"
+            return RESTART
         elif 600 < x < 700 and 825 < y < 875:
-            return "BUTTON_FUNCTION", "EXIT"
+            return EXIT
         # uses ranges to determine if a user clicked on a button
         # uses special 'key' phrases to determine which button was clicked
         elif x < LEFT_MARGIN or x > self.screen.get_width() - RIGHT_MARGIN or y < TOP_MARGIN or y > self.screen.get_height() - BOTTOM_MARGIN:
-            return None, None 
+            return None
         # returns None if nothing of significance was clicked
         else:
-            return int((y - TOP_MARGIN) // CELL_SIZE), int((x - LEFT_MARGIN) // CELL_SIZE)
+            return (int((y - TOP_MARGIN) // CELL_SIZE), int((x - LEFT_MARGIN) // CELL_SIZE))
         # returns the row and column of the clicked cell
 
     def is_full(self):

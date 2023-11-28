@@ -16,6 +16,7 @@ def main():
     display_main_menu = True
     display_game = False
     display_end = False
+    victory = NO_END
 
     while True:
         '''--------- Main Menu ---------'''
@@ -54,14 +55,17 @@ def main():
                     pygame.quit()
                     quit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    row, col = game_board.click(event.pos[0], event.pos[1])
+                    user_selection = game_board.click(event.pos[0], event.pos[1])
                     # saves row and column of the cell that was clicked
-                    if row is None or col is None:
+                    if user_selection is None:
                         pass
                     # if the user clicked outside the board, do nothing
-                    elif row == "BUTTON_FUNCTION":
+                    elif type(user_selection) == int:
                         # use 'key' phrases to determine what button was clicked
-                        if col == "RESTART":
+                        if user_selection == RESET:
+                            game_board.reset_to_original()
+                            # resets the board
+                        if user_selection == RESTART:
                             w = pygame.image.load("Bamboo.jpg")
                             screen.blit(w, (-100, 0))
                             screen.blit(w, (-100, 200))
@@ -69,15 +73,12 @@ def main():
 
                             game_board.draw()
                             # restarts the game with a new board but same difficulty
-                        if col == "RESET":
-                            game_board.reset_to_original()
-                            # resets the board
-                        if col == "EXIT":
+                        if user_selection == EXIT:
                             display_game = False
                             display_main_menu = True
                             # exits the game and returns to the main menu
                     else:
-                        game_board.select(row, col)
+                        game_board.select(user_selection[0], user_selection[1])
                         # selects the cell that was clicked
                 if event.type == pygame.KEYDOWN:
                     if pygame.key.name(event.key).isnumeric():  # if user pressed a number, sketch the value
@@ -102,7 +103,6 @@ def main():
                             victory = True if game_status == END_WIN else False
                             # if the board is complete, the game is no longer displayed and the end screen is displayed
                             # game_status variable can be used to determine if win or loss screen should be displayed
-
                     elif game_board.selected_cell is not None:  # avoid error if player has not selected a cell yet
                         '''
                         Finally, we'll check if the player tried to move the selection using the arrow keys.
@@ -140,6 +140,9 @@ def main():
         while display_end:
             # handling happens here (mouse clicks)
             for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:
                         game_board = None
