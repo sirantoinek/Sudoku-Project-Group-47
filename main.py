@@ -22,7 +22,7 @@ def main():
         w = pygame.image.load("Bamboo.jpg")
         screen.blit(w, (-100, 0))
         screen.blit(w, (-100, 300))
-        main_menu.displayMainMenu(screen, WIDTH, HEIGHT)
+        main_menu.display_main_menu(screen, WIDTH, HEIGHT)
         difficulty = None
 
         # calls on a function that displays the main menu
@@ -32,8 +32,7 @@ def main():
                     pygame.quit()
                     quit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    difficulty = main_menu.getDifficulty(event.pos)
-                    # DEBUG: print(difficulty)
+                    difficulty = main_menu.get_difficulty(event.pos)
                     # calls on a function that determines what difficulty was selected
             if difficulty != None:
                 display_main_menu = False
@@ -56,7 +55,6 @@ def main():
                     quit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     row, col = game_board.click(event.pos[0], event.pos[1])
-                    # DEBUG: print(row, col)
                     # saves row and column of the cell that was clicked
                     if row is None or col is None:
                         pass
@@ -73,8 +71,7 @@ def main():
                             # restarts the game with a new board but same difficulty
                         if col == "RESET":
                             game_board.reset_to_original()
-                            # clears the board
-                            # FIXME the clear function doesn't clear the board
+                            # resets the board
                         if col == "EXIT":
                             display_game = False
                             display_main_menu = True
@@ -90,7 +87,7 @@ def main():
                         if pygame.key.name(event.key)[1].isnumeric(): # get the number from the list, which is the number the user pressed
                             value_to_sketch = int(pygame.key.name(event.key)[1])  # get int value for the pressed number
                             game_board.sketch(value_to_sketch)
-                    elif (event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER) and game_board.selected_cell != None:  # if user pressed Enter, set the cell value
+                    elif (event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER) and game_board.selected_cell is not None:  # if user pressed Enter, set the cell value
                         game_board.place_number(
                             game_board.selected_cell.sketched_value)  # set the cell's value to its sketched value...
                         game_board.sketch(0)  # ...and remove the sketched value

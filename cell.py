@@ -16,18 +16,15 @@ class Cell:
 
     def set_cell_value(self, value):  # pass this function sketched value
         self.value = value
-        # return self.value
         # method that sets the value of the cell
         # should be called when user hits enter
-        # returns the value of the cell (although this is may not be needed)
 
     def get_cell_value(self):  # getter for value
         return self.value
 
-
     def set_sketched_value(self, value):
         try:
-            if value >= 1 and value <= 9:
+            if 1 <= value <= 9:
                 self.sketched_value = value
             else:
                 raise ValueError
@@ -54,7 +51,7 @@ class Cell:
             cell_num_rect = cell_num_surface.get_rect(center=(x, y))
             self.screen.blit(cell_num_surface, cell_num_rect)
 
-    def draw_final_value(self):  # when user hits enter, this function should be called
+    def draw_final_value(self):
         if self.value != 0:
             start_x, end_x = LEFT_MARGIN, self.screen.get_width() - RIGHT_MARGIN
             start_y, end_y = TOP_MARGIN, self.screen.get_height() - BOTTOM_MARGIN
@@ -68,7 +65,6 @@ class Cell:
             self.screen.blit(cell_num_surface, cell_num_rect)
 
         # method draws cell on the screen
-        # this is where pygame is needed
 
     def draw(self):
         self.draw_sketched_value()

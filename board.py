@@ -8,11 +8,9 @@ import random
 
 from constants import *
 
-"""This class is a WIP. It will be finished by Milestone 3"""
-
 
 class Board:
-    def __init__(self, width, height, screen, difficulty=0):
+    def __init__(self, width, height, screen, difficulty):
         """Create the board with given dimensions, window, and difficulty setting"""
 
         '''Creates the 2d lists that will store cell info
@@ -79,6 +77,11 @@ class Board:
     def draw(self):
         """Draws the board"""
 
+        '''Draw the background'''
+        w = pygame.image.load("Bamboo.jpg")
+        self.screen.blit(w, (-100, 0))
+        self.screen.blit(w, (-100, 200))
+
         '''Draw the grid'''
         '''Create variables specifying the area covered by this board'''
         start_x, end_x = LEFT_MARGIN, self.screen.get_width() - RIGHT_MARGIN
@@ -89,11 +92,6 @@ class Board:
         lines_x = [(i / 9) * range_x + start_x for i in range(0, 10)]
         lines_y = [(i / 9) * range_y + start_y for i in range(0, 10)]
         wide_lines_x, wide_lines_y = lines_x[::3], lines_y[::3]  # these coordinates will have wider lines
-
-        # Draw the background
-        w = pygame.image.load("Bamboo.jpg")
-        self.screen.blit(w, (-100, 0))
-        self.screen.blit(w, (-100, 200))
 
         # draw horizontal lines
         for y in lines_y:

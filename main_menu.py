@@ -2,18 +2,20 @@ import pygame
 from constants import *
 import glob
 
-def displayMainMenu(screen, width, height):
-    displayTitle(screen, width, height)
-    displaySubTitle(screen, width, height)
-    displayDifficulty(screen, width, height)
+
+def display_main_menu(screen, width, height):
+    display_title(screen, width, height)
+    display_subtitle(screen, width, height)
+    display_difficulty(screen, width, height)
 # calls all functions to display screen elements
 
-def getDifficulty(mouse_pos):
-    if mouse_pos[0] >= 200 and mouse_pos[0] <= 300 and mouse_pos[1] >= 525 and mouse_pos[1] <= 575:
+
+def get_difficulty(mouse_pos):
+    if 200 <= mouse_pos[0] <= 300 and 525 <= mouse_pos[1] <= 575:
         return DIFFICULTY_EASY
-    elif mouse_pos[0] >= 375 and mouse_pos[0] <= 525 and mouse_pos[1] >= 525 and mouse_pos[1] <= 575:
+    elif 375 <= mouse_pos[0] <= 525 <= mouse_pos[1] <= 575:
         return DIFFICULTY_MEDIUM
-    elif mouse_pos[0] >= 600 and mouse_pos[0] <= 700 and mouse_pos[1] >= 525 and mouse_pos[1] <= 575:
+    elif 600 <= mouse_pos[0] <= 700 and 525 <= mouse_pos[1] <= 575:
         return DIFFICULTY_HARD
     else:
         return None
@@ -26,21 +28,24 @@ The following functions are helper functions for displayMainMenu
 ----------------------------------------------------------------
 '''
 
-def displayTitle(screen, width, height):
+
+def display_title(screen, width, height):
     title_screen_font = pygame.font.Font(None, TITLE_FONT_SIZE)
     title_surface = title_screen_font.render("Welcome to Sudoku", 0, DEFAULT_FONT_COLOR)
     title_rect = title_surface.get_rect(center=(width / 2, 200))
     screen.blit(title_surface, title_rect)
 # displays title of game
 
-def displaySubTitle(screen, width, height):
+
+def display_subtitle(screen, width, height):
     game_mode_font = pygame.font.Font(None, 75)
     game_mode_surface = game_mode_font.render("Choose a game mode!", 0, DEFAULT_FONT_COLOR)
     game_mode_rect = game_mode_surface.get_rect(center=(width / 2, 425))
     screen.blit(game_mode_surface, game_mode_rect)
 # displays subtitle of game
 
-def displayDifficulty(screen, width, height):
+
+def display_difficulty(screen, width, height):
     game_modes = ["Easy", "Medium", "Hard"]
     game_modes_font = pygame.font.Font(None, BUTTON_FONT_SIZE)
     # creates a list of game modes and a font for the game modes
