@@ -89,9 +89,10 @@ def main():
                     if pygame.key.name(event.key).isnumeric():  # if user pressed a number, sketch the value
                         value_to_sketch = int(pygame.key.name(event.key))  # get int value for the pressed number
                         game_board.sketch(value_to_sketch)
-                    elif pygame.key.name(event.key)[1].isnumeric():
-                        value_to_sketch = int(pygame.key.name(event.key)[1])  # get int value for the pressed number
-                        game_board.sketch(value_to_sketch)
+                    elif type(pygame.key.name(event.key)) == list: # make sure the keypress is a list (returned by numpad clicks)
+                        if pygame.key.name(event.key)[1].isnumeric(): # get the number from the list, which is the number the user pressed
+                            value_to_sketch = int(pygame.key.name(event.key)[1])  # get int value for the pressed number
+                            game_board.sketch(value_to_sketch)
                     elif (event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER) and game_board.selected_cell != None:  # if user pressed Enter, set the cell value
                         game_board.place_number(
                             game_board.selected_cell.sketched_value)  # set the cell's value to its sketched value...
@@ -136,24 +137,21 @@ def main():
         # would be helpful to implement as a module
         # pass it game status to correctly print if the player won or lost
         # will also include a button to take user back to the main menu
+        v = Victory(screen)
+        if victory:
+            v.win()
+        else:
+            v.loss()
+
         while display_end:
             # handling happens here (mouse clicks)
-            v = Victory(screen)
-            if victory:
-                v.win()
-            else:
-                v.loss()
-
-            while True:
-                for event in pygame.event.get():
-                    if event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_RETURN:
-                            game_board = None
-                            display_main_menu = True
-                            display_game = False
-                            display_end = False
-                            break
-                break
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_RETURN:
+                        game_board = None
+                        display_main_menu = True
+                        display_game = False
+                        display_end = False
             pygame.display.update()
 
 
