@@ -60,7 +60,7 @@ def main():
                     if user_selection is None:
                         pass
                     # if the user clicked outside the board, do nothing
-                    elif type(user_selection) == int:
+                    elif type(user_selection) is int:
                         # use 'key' phrases to determine what button was clicked
                         if user_selection == BUTTON_RESET:
                             game_board.reset_to_original()
@@ -84,8 +84,8 @@ def main():
                     if pygame.key.name(event.key).isnumeric():  # if user pressed a number, sketch the value
                         value_to_sketch = int(pygame.key.name(event.key))  # get int value for the pressed number
                         game_board.sketch(value_to_sketch)
-                    elif type(pygame.key.name(event.key)) == list: # make sure the keypress is a list (returned by numpad clicks)
-                        if pygame.key.name(event.key)[1].isnumeric(): # get the number from the list, which is the number the user pressed
+                    elif type(pygame.key.name(event.key)) is list:  # make sure the keypress is a list (returned by numpad clicks)
+                        if pygame.key.name(event.key)[1].isnumeric():  # get the number from the list, which is the number the user pressed
                             value_to_sketch = int(pygame.key.name(event.key)[1])  # get int value for the pressed number
                             game_board.sketch(value_to_sketch)
                     elif (event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER) and game_board.selected_cell is not None:  # if user pressed Enter, set the cell value
