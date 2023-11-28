@@ -62,10 +62,10 @@ def main():
                     # if the user clicked outside the board, do nothing
                     elif type(user_selection) == int:
                         # use 'key' phrases to determine what button was clicked
-                        if user_selection == RESET:
+                        if user_selection == BUTTON_RESET:
                             game_board.reset_to_original()
                             # resets the board
-                        if user_selection == RESTART:
+                        if user_selection == BUTTON_RESTART:
                             w = pygame.image.load("Bamboo.jpg")
                             screen.blit(w, (-100, 0))
                             screen.blit(w, (-100, 200))
@@ -73,7 +73,7 @@ def main():
 
                             game_board.draw()
                             # restarts the game with a new board but same difficulty
-                        if user_selection == EXIT:
+                        if user_selection == BUTTON_EXIT:
                             display_game = False
                             display_main_menu = True
                             # exits the game and returns to the main menu
