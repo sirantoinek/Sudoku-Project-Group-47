@@ -12,9 +12,6 @@ def main():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Sudoku")
 
-
-    screen.fill(BACKGROUND_COLOR)
-
     game_board = None
     display_main_menu = True
     display_game = False
@@ -99,13 +96,13 @@ def main():
                         game_board.sketch(0)  # ...and remove the sketched value
                         game_status = game_board.check_board()
                         # checks game status to see if the board is complete or won
-                        if game_status == 0:
+                        if game_status == NO_END:
                             pass
                             # if the board is not complete, the game continues to be displayed
-                        elif game_status == 1 or game_status == 2:
+                        elif game_status == END_WIN or game_status == END_LOSE:
                             display_game = False
                             display_end = True
-                            victory = True if game_status == 1 else False
+                            victory = True if game_status == END_WIN else False
                             # if the board is complete, the game is no longer displayed and the end screen is displayed
                             # game_status variable can be used to determine if win or loss screen should be displayed
 

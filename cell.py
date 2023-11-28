@@ -50,7 +50,7 @@ class Cell:
             x = (range_x / 9) * (self.col + 0.2) + start_x
             y = (range_y / 9) * (self.row + 0.3) + start_y
 
-            cell_num_surface = self.sketched_font.render(str(self.sketched_value), 0, SECONDARY_FONT_COLOR)
+            cell_num_surface = self.sketched_font.render(str(self.sketched_value), 0, SKETCHED_FONT_COLOR)
             cell_num_rect = cell_num_surface.get_rect(center=(x, y))
             self.screen.blit(cell_num_surface, cell_num_rect)
 

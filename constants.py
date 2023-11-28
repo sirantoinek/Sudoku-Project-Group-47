@@ -1,30 +1,32 @@
 # THIS IS A FILE OF CONSTANTS, MEANT TO CREATE STANDARDS FOR UI ELEMENTS
 
-BACKGROUND_COLOR = (240, 244, 239)
+GRID_COLOR = (24, 29, 39)  # the color used to draw the sudoku gridlines
+SELECTION_COLOR = (240, 29, 39)  # the color used to highlight the player-selected cell
 
-GRID_COLOR = (24, 29, 39)
-SELECTION_COLOR = (240, 29, 39)
+DEFAULT_FONT_COLOR = (24, 29, 39)  # the color for most text, including menus and cell values
+SKETCHED_FONT_COLOR = (110, 110, 110)  # the color used for sketched cell values
+BUTTON_FONT_COLOR = (240, 244, 239)  # the color used for the text on menu buttons
 
-DEFAULT_FONT_COLOR = (24, 29, 39)
-SECONDARY_FONT_COLOR = (110, 110, 110)
-BUTTON_FONT_COLOR = (240, 244, 239)
+BUTTON_COLOR = (1, 111, 185)  # the color used for menu buttons
 
-SECONDARY_COLOR = (1, 111, 185)
-WIN_MESSAGE_COLOR = (57, 158, 90)
+WIDTH = 900  # width of the game window
+HEIGHT = 900  # height of the game window
+TOP_MARGIN = 10  # empty space between the grid and top of game window
+BOTTOM_MARGIN = 100  # space between the grid and bottom of game window (not empty as the quick menu goes here)
+LEFT_MARGIN = 55  # empty space between the grid and left of game window
+RIGHT_MARGIN = 55  # empty space between the grid and right of game window
 
-WIDTH = 900
-HEIGHT = 900
-TOP_MARGIN = 10
-BOTTOM_MARGIN = 100
-LEFT_MARGIN = 55
-RIGHT_MARGIN = 55
+CELL_SIZE = (WIDTH - (TOP_MARGIN + BOTTOM_MARGIN)) / 9  # the width of an individual cell
 
-CELL_SIZE = (WIDTH - (TOP_MARGIN + BOTTOM_MARGIN)) / 9
+TITLE_FONT_SIZE = 100  # font size for menu titles
+BUTTON_FONT_SIZE = 50  # font size for text in buttons
+VALUE_FONT_SIZE = 70  # cell value font size
+SKETCHED_FONT_SIZE = 60  # sketched cell value font size
 
-VALUE_FONT_SIZE = 70
-SKETCHED_FONT_SIZE = 60
+DIFFICULTY_EASY = 0  # easy mode ID
+DIFFICULTY_MEDIUM = 1  # medium mode ID
+DIFFICULTY_HARD = 2  # hard mode ID
 
-DIFFICULTY_EASY = 0
-DIFFICULTY_MEDIUM = 1
-DIFFICULTY_HARD = 2
-
+NO_END = 0  # indicates game is ongoing
+END_WIN = 1  # indicates game ended in a victory for the player
+END_LOSE = 2  # indicates game ended in a loss for the player
