@@ -27,6 +27,11 @@ DIFFICULTY_EASY = 0  # easy mode ID
 DIFFICULTY_MEDIUM = 1  # medium mode ID
 DIFFICULTY_HARD = 2  # hard mode ID
 
+RESET = 1 # quick menu reset ID
+RESTART = 2 # quick menu restart ID
+EXIT = 3 # quick menu exit ID
+
 NO_END = 0  # indicates game is ongoing
 END_WIN = 1  # indicates game ended in a victory for the player
 END_LOSE = 2  # indicates game ended in a loss for the player
+
