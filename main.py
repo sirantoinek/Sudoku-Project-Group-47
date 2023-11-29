@@ -5,7 +5,7 @@ from sudoku_generator import SudokuGenerator
 from board import Board
 from cell import Cell
 from constants import *
-from victory import *
+from game_over import *
 
 def main():
     pygame.init()
@@ -20,9 +20,9 @@ def main():
 
     while True:
         '''--------- Main Menu ---------'''
-        w = pygame.image.load("Bamboo.jpg")
-        screen.blit(w, (-100, 0))
-        screen.blit(w, (-100, 300))
+        background_texture = pygame.image.load("Bamboo.jpg")
+        screen.blit(background_texture, (-100, 0))
+        screen.blit(background_texture, (-100, 300))
         main_menu.display_main_menu(screen, WIDTH, HEIGHT)
         difficulty = None
 
@@ -43,9 +43,9 @@ def main():
             pygame.display.update()
 
         '''--------- Game ---------'''
-        w = pygame.image.load("Bamboo.jpg")
-        screen.blit(w, (-100, 0))
-        screen.blit(w, (-100, 200))
+        background_texture = pygame.image.load("Bamboo.jpg")
+        screen.blit(background_texture, (-100, 0))
+        screen.blit(background_texture, (-100, 200))
         game_board = Board(9, 9, screen, difficulty)
         game_board.draw()
         # calls on a function that displays the game
@@ -66,9 +66,9 @@ def main():
                             game_board.reset_to_original()
                             # resets the board
                         if user_selection == BUTTON_RESTART:
-                            w = pygame.image.load("Bamboo.jpg")
-                            screen.blit(w, (-100, 0))
-                            screen.blit(w, (-100, 200))
+                            background_texture = pygame.image.load("Bamboo.jpg")
+                            screen.blit(background_texture, (-100, 0))
+                            screen.blit(background_texture, (-100, 200))
                             game_board = Board(9, 9, screen, difficulty)
 
                             game_board.draw()
@@ -81,16 +81,20 @@ def main():
                         game_board.select(user_selection[0], user_selection[1])
                         # selects the cell that was clicked
                 if event.type == pygame.KEYDOWN:
-                    if pygame.key.name(event.key).isnumeric():  # if user pressed a number, sketch the value
-                        value_to_sketch = int(pygame.key.name(event.key))  # get int value for the pressed number
+                    key_name = pygame.key.name(event.key)
+
+                    '''Numpad inputs are named '[#]', where # is the number pressed.
+                    If the key's name starts and ends with brackets, we strip them away.
+                    This way, the subsequent code can correctly identify numbers.'''
+                    if key_name[0] == '[' and key_name[-1] == ']':
+                        key_name = key_name[1:-1]
+
+                    if key_name.isnumeric():  # if user pressed a number, sketch the value
+                        value_to_sketch = int(key_name)  # get int value for the pressed number
                         game_board.sketch(value_to_sketch)
-                    elif type(pygame.key.name(event.key)) is list:  # make sure the keypress is a list (returned by numpad clicks)
-                        if pygame.key.name(event.key)[1].isnumeric():  # get the number from the list, which is the number the user pressed
-                            value_to_sketch = int(pygame.key.name(event.key)[1])  # get int value for the pressed number
-                            game_board.sketch(value_to_sketch)
+
                     elif (event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER) and game_board.selected_cell is not None:  # if user pressed Enter, set the cell value
-                        game_board.place_number(
-                            game_board.selected_cell.sketched_value)  # set the cell's value to its sketched value...
+                        game_board.place_number(game_board.selected_cell.sketched_value)  # set the cell's value to its sketched value...
                         game_board.sketch(0)  # ...and remove the sketched value
                         game_status = game_board.check_board()
                         # checks game status to see if the board is complete or won
@@ -103,6 +107,7 @@ def main():
                             victory = True if game_status == END_WIN else False
                             # if the board is complete, the game is no longer displayed and the end screen is displayed
                             # game_status variable can be used to determine if win or loss screen should be displayed
+
                     elif game_board.selected_cell is not None:  # avoid error if player has not selected a cell yet
                         '''
                         Finally, we'll check if the player tried to move the selection using the arrow keys.
@@ -131,11 +136,11 @@ def main():
         # would be helpful to implement as a module
         # pass it game status to correctly print if the player won or lost
         # will also include a button to take user back to the main menu
-        v = Victory(screen)
+        victory_screen = GameOver(screen)
         if victory:
-            v.win()
+            victory_screen.win()
         else:
-            v.loss()
+            victory_screen.loss()
 
         while display_end:
             # handling happens here (mouse clicks)
