@@ -110,10 +110,13 @@ def main():
                             current_screen = SCREEN_MENU
                             needs_drawing = True
 
+        '''If any of the events could've caused visual changes, we'll redraw the screen'''
         if needs_drawing:
+            '''All screens have the same background'''
             screen.blit(background_texture, (-100, 0))
             screen.blit(background_texture, (-100, 300))
 
+            '''We call the appropriate functions for the current screen'''
             if current_screen == SCREEN_MENU:
                 main_menu.display_main_menu(screen, WIDTH, HEIGHT)
             elif current_screen == SCREEN_GAME:
@@ -125,7 +128,7 @@ def main():
                 else:
                     victory_screen.loss()
             pygame.display.update()
-            needs_drawing = False
+            needs_drawing = False  # we won't draw again until there are more changes
 
 
 
