@@ -52,7 +52,7 @@ def display_difficulty(screen, width, height):
 
     pygame.draw.rect(screen, BUTTON_COLOR, (200, 525, 100, 50))
     # this rectangle creates a fill with the secondary color
-    pygame.draw.rect(screen, DEFAULT_FONT_COLOR, (200, 525, 100, 50), 3)
+    pygame.draw.rect(screen, BUTTON_OUTLINE_COLOR, (200, 525, 100, 50), 3)
     # this rectangle creates an outline with a width of 3 pixels
     easy_game_modes_surface = game_modes_font.render(game_modes[0], 0, BUTTON_FONT_COLOR)
     easy_game_modes_rect = easy_game_modes_surface.get_rect(center=(width / 2 - 200, height / 2 + 100))
@@ -61,7 +61,7 @@ def display_difficulty(screen, width, height):
 
     pygame.draw.rect(screen, BUTTON_COLOR, (375, 525, 150, 50))
     # this rectangle creates a fill with the secondary color
-    pygame.draw.rect(screen, DEFAULT_FONT_COLOR, (375, 525, 150, 50), 3)
+    pygame.draw.rect(screen, BUTTON_OUTLINE_COLOR, (375, 525, 150, 50), 3)
     # this rectangle creates an outline with a width of 3 pixels
     medium_game_modes_surface = game_modes_font.render(game_modes[1], 0, BUTTON_FONT_COLOR)
     medium_game_modes_rect = medium_game_modes_surface.get_rect(center=(width / 2, height / 2 + 100))
@@ -70,7 +70,7 @@ def display_difficulty(screen, width, height):
 
     pygame.draw.rect(screen, BUTTON_COLOR, (600, 525, 100, 50))
     # this rectangle creates a fill with the secondary color
-    pygame.draw.rect(screen, DEFAULT_FONT_COLOR, (600, 525, 100, 50), 3)
+    pygame.draw.rect(screen, BUTTON_OUTLINE_COLOR, (600, 525, 100, 50), 3)
     # this rectangle creates an outline with a width of 3 pixels
     hard_game_modes_surface = game_modes_font.render(game_modes[2], 0, BUTTON_FONT_COLOR)
     hard_game_modes_rect = hard_game_modes_surface.get_rect(center=(width / 2 + 200, height / 2 + 100))

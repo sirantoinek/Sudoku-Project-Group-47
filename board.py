@@ -126,7 +126,7 @@ class Board:
 
         pygame.draw.rect(self.screen, BUTTON_COLOR, (190, 825, 110, 50))
         # this rectangle creates a fill with the secondary color
-        pygame.draw.rect(self.screen, DEFAULT_FONT_COLOR, (190, 825, 110, 50), 3)
+        pygame.draw.rect(self.screen, BUTTON_OUTLINE_COLOR, (190, 825, 110, 50), 3)
         # this rectangle creates an outline with a width of 3 pixels
         reset_menu_options_surface = menu_options_font.render(menu_options[0], 0, BUTTON_FONT_COLOR)
         reset_menu_options_rect = reset_menu_options_surface.get_rect(center=(WIDTH / 2 - 207, HEIGHT - 50))
@@ -135,7 +135,7 @@ class Board:
         
         pygame.draw.rect(self.screen, BUTTON_COLOR, (375, 825, 150, 50))
         # this rectangle creates a fill with the secondary color
-        pygame.draw.rect(self.screen, DEFAULT_FONT_COLOR, (375, 825, 150, 50), 3)
+        pygame.draw.rect(self.screen, BUTTON_OUTLINE_COLOR, (375, 825, 150, 50), 3)
         # this rectangle creates an outline with a width of 3 pixels
         restart_menu_options_surface = menu_options_font.render(menu_options[1], 0, BUTTON_FONT_COLOR)
         restart_menu_options_rect = restart_menu_options_surface.get_rect(center=(WIDTH / 2, HEIGHT - 50))
@@ -144,7 +144,7 @@ class Board:
 
         pygame.draw.rect(self.screen, BUTTON_COLOR, (600, 825, 100, 50))
         # this rectangle creates a fill with the secondary color
-        pygame.draw.rect(self.screen, DEFAULT_FONT_COLOR, (600, 825, 100, 50), 3)
+        pygame.draw.rect(self.screen, BUTTON_OUTLINE_COLOR, (600, 825, 100, 50), 3)
         # this rectangle creates an outline with a width of 3 pixels
         exit_menu_options_surface = menu_options_font.render(menu_options[2], 0, BUTTON_FONT_COLOR)
         exit_menu_options_rect = exit_menu_options_surface.get_rect(center=(WIDTH / 2 + 200, HEIGHT - 50))
