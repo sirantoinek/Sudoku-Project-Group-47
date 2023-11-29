@@ -5,9 +5,6 @@ from constants import *
 class GameOver:
     def __init__(self, screen):
         self.screen = screen
-        background_texture = pygame.image.load("Bamboo.jpg")
-        self.screen.blit(background_texture, (-100, 0))
-        self.screen.blit(background_texture, (-100, 300))
 
     def win(self):
         title_screen_font = pygame.font.Font(None, TITLE_FONT_SIZE)

@@ -31,6 +31,10 @@ BUTTON_RESET = 0  # quick menu reset ID
 BUTTON_RESTART = 1  # quick menu restart ID
 BUTTON_EXIT = 2  # quick menu exit ID
 
+SCREEN_MENU = 0  # main menu screen ID
+SCREEN_GAME = 1  # sudoku board screen ID
+SCREEN_END = 2  # game end screen ID
+
 NO_END = 0  # indicates game is ongoing
 END_WIN = 1  # indicates game ended in a victory for the player
 END_LOSE = 2  # indicates game ended in a loss for the player
