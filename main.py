@@ -46,10 +46,11 @@ def main():
                                     game_board.reset_to_original()
                                     # resets the board
                                 if user_selection == BUTTON_RESTART:
-                                    game_board = Board(9, 9, screen, difficulty)
+                                    current_screen = SCREEN_MENU
                                     # restarts the game with a new board but same difficulty
                                 if user_selection == BUTTON_EXIT:
-                                    current_screen = SCREEN_MENU
+                                    pygame.quit()
+                                    sys.exit()
                                     # exits the game and returns to the main menu
                             else:  # the user clicked a cell on the board itself
                                 game_board.select(user_selection[0], user_selection[1])
